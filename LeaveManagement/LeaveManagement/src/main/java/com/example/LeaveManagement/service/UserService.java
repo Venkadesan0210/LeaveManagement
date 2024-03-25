@@ -40,7 +40,6 @@ public class UserService implements UserServiceInt {
         userRole.setRoleName("User");
         userRole.setRoleDescription("Default role for newly created record");
         roleRepo.save(userRole);
-
     }
 
     public User registerNewUser(UserDTO userDTO) {
@@ -54,16 +53,12 @@ public class UserService implements UserServiceInt {
         user.setUserRole(role.getRoleName());
         user.setUserFirstName(userDTO.getUserFirstName());
         user.setUserLastName(userDTO.getUserLastName());
-
-
-
         if(role.getRoleName().equals("EMPLOYEE")){
             EmployeeLeave employeeLeave=new EmployeeLeave();
             employeeLeave.setMarriageLeave(3);
             employeeLeave.setMedicalLeave(10);
             employeeLeave.setPrivilegeLeave(10);
             employeeLeave.setPaternityLeave(5);
-
             user.setEmployeeLeave(employeeLeave);
         }
         return userRepo.save(user);
@@ -72,11 +67,9 @@ public class UserService implements UserServiceInt {
     public List<User> getAllUsers() {
         return userRepo.findAll();
     }
-
     public String getEncodedPassword(String password) {
         return passwordEncoder.encode(password);
     }
-
     public User updateUserAssignee(String userName,String managerUserName){
         User user= userRepo.findByUserName(userName);
         User managerUser=userRepo.findByUserName(managerUserName);
@@ -91,10 +84,8 @@ public class UserService implements UserServiceInt {
 
         if(!managerRole.getRoleName().equals("MANAGER")){
             throw new EntityNotFoundException("Given user was not a manager");
-
         }
         user.setAssignee(managerUser.getUserName());
         return userRepo.save(user);
-
     }
 }
