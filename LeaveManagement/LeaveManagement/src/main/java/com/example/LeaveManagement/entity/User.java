@@ -9,10 +9,9 @@ public class User {
     private String userFirstName;
     private String userLastName;
     private String userPassword;
-
     private String userRole;
-
     private String assignee;
+    private Set<Role> role;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="emp_leave_id" ,referencedColumnName = "id")
@@ -43,8 +42,6 @@ public class User {
                     @JoinColumn(name = "ROLE_ID")
             }
     )
-    private Set<Role> role;
-
     public String getUserName() {
         return userName;
     }

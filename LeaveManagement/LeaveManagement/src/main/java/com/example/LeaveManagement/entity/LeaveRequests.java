@@ -13,8 +13,6 @@ public class LeaveRequests {
     @ManyToOne
     @JoinColumn(name="employee_leave_id", nullable=false, referencedColumnName = "id")
     private EmployeeLeave employeeLeave;
-
-
     private String leaveType;
 
     private String noOfDays;
