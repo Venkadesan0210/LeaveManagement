@@ -1,15 +1,12 @@
 package com.example.LeaveManagement.util;
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-
 public class JwtUtil {
     private static final String SECRET_KEY = "learn_programming_yourself";
 
@@ -37,7 +34,6 @@ public class JwtUtil {
         final Date expiration = getExpirationDateFromToken(token);
         return expiration.before(new Date());
     }
-
     public Date getExpirationDateFromToken(String token) {
         return getClaimFromToken(token, Claims::getExpiration);
     }
