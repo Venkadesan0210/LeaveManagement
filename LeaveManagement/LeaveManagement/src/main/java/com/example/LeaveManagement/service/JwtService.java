@@ -1,5 +1,4 @@
 package com.example.LeaveManagement.service;
-
 import com.example.LeaveManagement.repo.UserRepo;
 import com.example.LeaveManagement.entity.JwtRequest;
 import com.example.LeaveManagement.entity.JwtResponse;
@@ -16,28 +15,23 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-
 @Service
 @Component
 public class JwtService implements UserDetailsService {
     private JwtUtil jwtUtil;
     private UserRepo userDao;
     private AuthenticationManager authenticationManager;
-
     @Autowired
     public void setJwtUtil(JwtUtil jwtUtil) {
         this.jwtUtil = jwtUtil;
     }
-
     @Autowired
     public void setUserDao(UserRepo userDao) {
         this.userDao = userDao;
     }
-
     @Autowired
     public void setAuthenticationManager(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;

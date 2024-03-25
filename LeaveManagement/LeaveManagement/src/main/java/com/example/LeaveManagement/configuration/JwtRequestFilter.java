@@ -1,5 +1,4 @@
 package com.example.LeaveManagement.configuration;
-
 import com.example.LeaveManagement.util.JwtUtil;
 import com.example.LeaveManagement.service.JwtService;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -8,9 +7,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +22,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         this.jwtUtil = jwtUtil;
     }
-
     @Autowired
     public void setJwtService(JwtService jwtService) {
         this.jwtService = jwtService;
@@ -34,10 +30,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         final String requestTokenHeader = request.getHeader("Authorization");
-
         String username = null;
         String jwtToken = null;
-
         if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
             jwtToken = requestTokenHeader.substring(7);
             try {
