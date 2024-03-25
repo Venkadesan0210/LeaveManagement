@@ -1,9 +1,8 @@
 package com.example.LeaveManagement.repo;
-import com.example.LeaveManagement.entity.Role;
+
+import com.example.LeaveManagement.entity.LeaveRequests;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
 @Repository
-public interface RoleRepo extends JpaRepository<Role, String> {
-    Role findByRoleName(String role);
+public interface LeaveRequestRepo extends JpaRepository<LeaveRequests, Long> {
 }
