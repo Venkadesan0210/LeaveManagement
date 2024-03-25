@@ -12,7 +12,7 @@
 	<artifactId>jwt</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Leavemanagement</name>
-	<description>Demo project to understand JWT token + role based authentication</description>
+	<description>This project serves as a demonstration of Spring Boot, showcasing its capabilities in handling leave management functionalities. Additionally, it integrates JWT token and role-based authentication to provide a secure environment for managing leave requests and permissions.</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
