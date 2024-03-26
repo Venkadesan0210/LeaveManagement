@@ -1,4 +1,4 @@
-package com.example.LeaveManagement.configuration;
+package com.example.leavemanagement.configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

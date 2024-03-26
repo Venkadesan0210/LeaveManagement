@@ -1,8 +1,6 @@
-package com.example.LeaveManagement;
-
+package com.example.leavemanagement;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 public class LeaveManagementApplication {

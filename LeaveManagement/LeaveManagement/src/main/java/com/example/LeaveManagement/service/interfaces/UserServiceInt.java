@@ -1,6 +1,6 @@
-package com.example.LeaveManagement.service.interfaces;
-import com.example.LeaveManagement.dto.UserDTO;
-import com.example.LeaveManagement.entity.User;
+package com.example.leavemanagement.service.interfaces;
+import com.example.leavemanagement.dto.UserDTO;
+import com.example.leavemanagement.entity.User;
 import java.util.List;
 public interface UserServiceInt {
     public void initRoleAndUser();

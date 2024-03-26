@@ -1,5 +1,4 @@
-package com.example.LeaveManagement.dto;
-
+package com.example.leavemanagement.dto;
 public class UpdateUserAssigneeDto {
 
     private String userName;

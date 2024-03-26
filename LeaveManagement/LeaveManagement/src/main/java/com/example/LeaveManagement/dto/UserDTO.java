@@ -1,11 +1,9 @@
-package com.example.LeaveManagement.dto;
-
+package com.example.leavemanagement.dto;
 public class UserDTO {
     private String userName;
     private String userFirstName;
     private String userLastName;
     private String userPassword;
-
     private String userRole;
 
     public String getUserName() {

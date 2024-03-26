@@ -1,4 +1,4 @@
-package com.example.LeaveManagement.dto;
+package com.example.leavemanagement.dto;
 
 public class LeaveRequestByManagerDto {
     private String managerName;

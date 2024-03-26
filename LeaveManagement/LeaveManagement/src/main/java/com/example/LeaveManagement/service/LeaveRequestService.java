@@ -1,11 +1,11 @@
-package com.example.LeaveManagement.service;
-import com.example.LeaveManagement.repo.LeaveRequestRepo;
-import com.example.LeaveManagement.repo.RoleRepo;
-import com.example.LeaveManagement.repo.UserRepo;
-import com.example.LeaveManagement.dto.UpdateLeaveRequestDto;
-import com.example.LeaveManagement.dto.LeaveRequestDto;
-import com.example.LeaveManagement.entity.*;
-import com.example.LeaveManagement.service.interfaces.LeaveRequestServiceImpl;
+package com.example.leavemanagement.service;
+import com.example.leavemanagement.repo.LeaveRequestRepo;
+import com.example.leavemanagement.repo.RoleRepo;
+import com.example.leavemanagement.repo.UserRepo;
+import com.example.leavemanagement.dto.UpdateLeaveRequestDto;
+import com.example.leavemanagement.dto.LeaveRequestDto;
+import com.example.leavemanagement.entity.*;
+import com.example.leavemanagement.service.interfaces.LeaveRequestServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 @Service
-
 public class LeaveRequestService implements LeaveRequestServiceImpl{
     private final LeaveRequestRepo leaveRequestRepo;
     private final UserRepo userRepo;

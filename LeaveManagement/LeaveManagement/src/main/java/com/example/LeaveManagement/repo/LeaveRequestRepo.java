@@ -1,6 +1,5 @@
-package com.example.LeaveManagement.repo;
-
-import com.example.LeaveManagement.entity.LeaveRequests;
+package com.example.leavemanagement.repo;
+import com.example.leavemanagement.entity.LeaveRequests;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 @Repository
