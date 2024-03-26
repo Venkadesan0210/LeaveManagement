@@ -1,13 +1,12 @@
-package com.example.LeaveManagement.controller;
-
+package com.example.leavemanagement.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.LeaveManagement.entity.JwtRequest;
-import com.example.LeaveManagement.entity.JwtResponse;
-import com.example.LeaveManagement.service.JwtService;
+import com.example.leavemanagement.entity.JwtRequest;
+import com.example.leavemanagement.entity.JwtResponse;
+import com.example.leavemanagement.service.JwtService;
 @RestController
 @CrossOrigin
 public class JwtController {

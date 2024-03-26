@@ -1,7 +1,5 @@
-package com.example.LeaveManagement.entity;
-
+package com.example.leavemanagement.entity;
 import javax.persistence.*;
-
 @Entity
 @Table(name = "employee_leave")
 public class EmployeeLeave {
@@ -14,7 +12,6 @@ public class EmployeeLeave {
     private  Integer privilegeLeave;
     private  Integer medicalLeave;
     private  Integer paternityLeave;
-
     public EmployeeLeave() {
     }
 

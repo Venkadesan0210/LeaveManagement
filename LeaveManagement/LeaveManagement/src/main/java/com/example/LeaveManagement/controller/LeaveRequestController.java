@@ -1,9 +1,9 @@
-package com.example.LeaveManagement.controller;
-import com.example.LeaveManagement.dto.LeaveRequestByManagerDto;
-import com.example.LeaveManagement.dto.LeaveRequestDto;
-import com.example.LeaveManagement.dto.UpdateLeaveRequestDto;
-import com.example.LeaveManagement.entity.LeaveRequests;
-import com.example.LeaveManagement.service.LeaveRequestService;
+package com.example.leavemanagement.controller;
+import com.example.leavemanagement.dto.LeaveRequestByManagerDto;
+import com.example.leavemanagement.dto.LeaveRequestDto;
+import com.example.leavemanagement.dto.UpdateLeaveRequestDto;
+import com.example.leavemanagement.entity.LeaveRequests;
+import com.example.leavemanagement.service.LeaveRequestService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -27,7 +27,6 @@ public class LeaveRequestController {
     @PostMapping("/update-leave")
     public ResponseEntity<LeaveRequests> updatedLeaveRequest(@RequestBody UpdateLeaveRequestDto updateLeaveRequestDto){
         return leaveRequestService.updateLeaveRequest(updateLeaveRequestDto);
-
     }
 
     @PostMapping("/leaves-manager")

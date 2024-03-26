@@ -1,11 +1,11 @@
-package com.example.LeaveManagement.service;
-import com.example.LeaveManagement.repo.RoleRepo;
-import com.example.LeaveManagement.repo.UserRepo;
-import com.example.LeaveManagement.dto.UserDTO;
-import com.example.LeaveManagement.entity.EmployeeLeave;
-import com.example.LeaveManagement.entity.User;
-import com.example.LeaveManagement.entity.Role;
-import com.example.LeaveManagement.service.interfaces.UserServiceInt;
+package com.example.leavemanagement.service;
+import com.example.leavemanagement.repo.RoleRepo;
+import com.example.leavemanagement.repo.UserRepo;
+import com.example.leavemanagement.dto.UserDTO;
+import com.example.leavemanagement.entity.EmployeeLeave;
+import com.example.leavemanagement.entity.User;
+import com.example.leavemanagement.entity.Role;
+import com.example.leavemanagement.service.interfaces.UserServiceInt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,11 +15,9 @@ import java.util.List;
 import java.util.Set;
 @Service
 public class UserService implements UserServiceInt {
-
     private final UserRepo userRepo;
     private final RoleRepo roleRepo;
     private final PasswordEncoder passwordEncoder;
-
     @Autowired
     public UserService(UserRepo userRepo, RoleRepo roleRepo, PasswordEncoder passwordEncoder) {
         this.userRepo = userRepo;

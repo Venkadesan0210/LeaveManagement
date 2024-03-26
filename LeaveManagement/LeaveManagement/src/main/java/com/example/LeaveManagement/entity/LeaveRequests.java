@@ -1,12 +1,8 @@
-package com.example.LeaveManagement.entity;
-
-
+package com.example.leavemanagement.entity;
 import javax.persistence.*;
-
 @Entity
 @Table(name = "leave_requests")
 public class LeaveRequests {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long leaveRequestId;
@@ -18,12 +14,10 @@ public class LeaveRequests {
     private String noOfDays;
     private String fromDate;
     private String toDate;
-
     @Enumerated(EnumType.STRING)
     private LeaveStatus status;
     private String description;
     private String updatedBy;
-
 
     public Long getLeaveRequestId() {
         return leaveRequestId;

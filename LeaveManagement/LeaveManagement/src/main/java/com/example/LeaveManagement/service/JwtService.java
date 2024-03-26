@@ -1,9 +1,9 @@
-package com.example.LeaveManagement.service;
-import com.example.LeaveManagement.repo.UserRepo;
-import com.example.LeaveManagement.entity.JwtRequest;
-import com.example.LeaveManagement.entity.JwtResponse;
-import com.example.LeaveManagement.entity.User;
-import com.example.LeaveManagement.util.JwtUtil;
+package com.example.leavemanagement.service;
+import com.example.leavemanagement.repo.UserRepo;
+import com.example.leavemanagement.entity.JwtRequest;
+import com.example.leavemanagement.entity.JwtResponse;
+import com.example.leavemanagement.entity.User;
+import com.example.leavemanagement.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -50,8 +50,8 @@ public class JwtService implements UserDetailsService {
             User user = optionalUser.get();
             return new JwtResponse(user, newGeneratedToken);
         } else {
-            // Throwing a generic exception without revealing whether the user exists or not
-            throw new BadCredentialsException("Invalid username or password");
+            // Throwing a more specific exception when the user is not found
+            throw new UserNotFoundException("User not found with username: " + userName);
         }
     }
     @Override
@@ -70,19 +70,38 @@ public class JwtService implements UserDetailsService {
     }
     private Set<SimpleGrantedAuthority> getAuthority(User user) {
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
-        user.getRole().forEach(role -> {
-            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getRoleName()));
-        });
+        user.getRole().forEach(role ->
+                authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getRoleName()))
+        );
         return authorities;
     }
 
-    private void authenticate(String userName, String userPassword) throws Exception {
+    private void authenticate(String userName, String userPassword) throws UserDisabledException, InvalidCredentialsException {
         try {
+            // Uncovered code
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userName, userPassword));
         } catch (DisabledException e) {
-            throw new Exception("USER_DISABLED", e);
+            throw new UserDisabledException("USER_DISABLED", e);
         } catch (BadCredentialsException e) {
-            throw new Exception("INVALID_CREDENTIALS", e);
+            throw new InvalidCredentialsException("INVALID_CREDENTIALS", e);
+        }
+    }
+
+
+    public class UserDisabledException extends Exception {
+        public UserDisabledException(String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
+
+    public class InvalidCredentialsException extends Exception {
+        public InvalidCredentialsException(String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
+    public class UserNotFoundException extends Exception {
+        public UserNotFoundException(String message) {
+            super(message);
         }
     }
 }

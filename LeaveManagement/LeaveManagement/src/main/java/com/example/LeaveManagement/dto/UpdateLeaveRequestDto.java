@@ -1,6 +1,5 @@
-package com.example.LeaveManagement.dto;
-import com.example.LeaveManagement.entity.LeaveStatus;
-
+package com.example.leavemanagement.dto;
+import com.example.leavemanagement.entity.LeaveStatus;
 public class UpdateLeaveRequestDto {
     private String userName;
     private Long leaveRequestId;

@@ -1,7 +1,7 @@
-package com.example.LeaveManagement.controller;
-import com.example.LeaveManagement.dto.RoleDto;
-import com.example.LeaveManagement.entity.Role;
-import com.example.LeaveManagement.service.RoleService;
+package com.example.leavemanagement.controller;
+import com.example.leavemanagement.dto.RoleDto;
+import com.example.leavemanagement.entity.Role;
+import com.example.leavemanagement.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
