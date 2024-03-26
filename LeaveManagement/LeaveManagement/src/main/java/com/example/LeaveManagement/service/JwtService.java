@@ -36,7 +36,6 @@ public class JwtService implements UserDetailsService {
     public void setAuthenticationManager(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
     }
-
     public JwtResponse createJwtToken(JwtRequest jwtRequest) throws Exception {
         String userName = jwtRequest.getUserName();
         String userPassword = jwtRequest.getUserPassword();
@@ -75,7 +74,6 @@ public class JwtService implements UserDetailsService {
         );
         return authorities;
     }
-
     private void authenticate(String userName, String userPassword) throws UserDisabledException, InvalidCredentialsException {
         try {
             // Uncovered code
@@ -86,7 +84,6 @@ public class JwtService implements UserDetailsService {
             throw new InvalidCredentialsException("INVALID_CREDENTIALS", e);
         }
     }
-
 
     public class UserDisabledException extends Exception {
         public UserDisabledException(String message, Throwable cause) {
