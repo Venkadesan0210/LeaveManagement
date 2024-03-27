@@ -24,20 +24,16 @@ public class UserService implements UserServiceInt {
         this.roleRepo = roleRepo;
         this.passwordEncoder = passwordEncoder;
     }
-
     public void initRoleAndUser() {
-
         Role adminRole = new Role();
         adminRole.setRoleName("Admin");
         adminRole.setRoleDescription("Admin role");
         roleRepo.save(adminRole);
-
         Role userRole = new Role();
         userRole.setRoleName("User");
         userRole.setRoleDescription("Default role for newly created record");
         roleRepo.save(userRole);
     }
-
     public User registerNewUser(UserDTO userDTO) {
         User user = new User();
         Role role = roleRepo.findByRoleName(userDTO.getUserRole());
@@ -62,13 +58,15 @@ public class UserService implements UserServiceInt {
     public List<User> getAllUsers() {
         return userRepo.findAll();
     }
+    public List<User> assigneeByEmployee(String assigneeByEmployee){
+        return userRepo.findByAssignee(assigneeByEmployee);
+    }
     public String getEncodedPassword(String password) {
         return passwordEncoder.encode(password);
     }
     public User updateUserAssignee(String userName,String managerUserName){
         User user= userRepo.findByUserName(userName);
         User managerUser=userRepo.findByUserName(managerUserName);
-
         if(user.getUserName().isBlank()){
             throw new EntityNotFoundException("user not found");
         }

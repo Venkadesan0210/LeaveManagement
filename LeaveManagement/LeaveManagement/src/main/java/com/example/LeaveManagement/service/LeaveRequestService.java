@@ -1,4 +1,5 @@
 package com.example.leavemanagement.service;
+import com.example.leavemanagement.dto.LeaveRequestOutputDto;
 import com.example.leavemanagement.repo.LeaveRequestRepo;
 import com.example.leavemanagement.repo.RoleRepo;
 import com.example.leavemanagement.repo.UserRepo;
@@ -27,7 +28,9 @@ public class LeaveRequestService implements LeaveRequestServiceImpl{
     public List<LeaveRequests> getAllLeaveRequest(){
         return leaveRequestRepo.findAll();
     }
-
+    public List<LeaveRequests> getLeaveRequestById(Long emplyeeLeaveId){
+        return leaveRequestRepo.findByEmployeeLeaveId(emplyeeLeaveId);
+    }
     public LeaveRequests applyLeaveRequest(LeaveRequestDto leaveRequestDto){
         User user=userRepo.findByUserName(leaveRequestDto.getUserName());
         if(user.getUserName().isBlank()){
@@ -46,7 +49,6 @@ public class LeaveRequestService implements LeaveRequestServiceImpl{
         leaveRequest.setStatus(LeaveStatus.REQUESTED);
         return leaveRequestRepo.save(leaveRequest);
     }
-
     public ResponseEntity<LeaveRequests> updateLeaveRequest(UpdateLeaveRequestDto updateLeaveRequestDto){
         Optional<LeaveRequests> leaveRequests=leaveRequestRepo.findById(updateLeaveRequestDto.getLeaveRequestId());
         User user=userRepo.findByUserName(updateLeaveRequestDto.getUserName());
@@ -82,10 +84,10 @@ public class LeaveRequestService implements LeaveRequestServiceImpl{
         }
         return ResponseEntity.unprocessableEntity().build();
     }
-    public List<LeaveRequests> managerBasedRequests(String managerUserName){
+    public List<LeaveRequestOutputDto> managerBasedRequests(String managerUserName){
         List<User> user=userRepo.findAll();
         List<LeaveRequests> leaveRequests=leaveRequestRepo.findAll();
-        List<LeaveRequests> outputLeaveRequests=new ArrayList<>();
+        List<LeaveRequestOutputDto> outputLeaveRequests=new ArrayList<>();
         List<User> filteredUsersByAssignee = new ArrayList<>();
         user.stream().filter(user1 ->
                 user1.getAssignee()!=null
@@ -96,8 +98,22 @@ public class LeaveRequestService implements LeaveRequestServiceImpl{
         });
         filteredUsersByAssignee.forEach(user1 -> leaveRequests.forEach(leaveRequests1 -> {
             if(user1.getEmployeeLeave().getId().equals(leaveRequests1.getEmployeeLeave().getId())){
-                outputLeaveRequests.add(leaveRequests1);}
+                LeaveRequestOutputDto leaveRequestOutputDto=new LeaveRequestOutputDto();
+                leaveRequestOutputDto.setUserName(user1.getUserName());
+                leaveRequestOutputDto.setLeaveRequestId(leaveRequests1.getLeaveRequestId());
+                leaveRequestOutputDto.setFromDate(leaveRequests1.getFromDate());
+                leaveRequestOutputDto.setToDate(leaveRequests1.getToDate());
+                leaveRequestOutputDto.setLeaveType(leaveRequests1.getLeaveType());
+                leaveRequestOutputDto.setNoOfDays(leaveRequests1.getNoOfDays());
+                leaveRequestOutputDto.setDescription(leaveRequests1.getDescription());
+                leaveRequestOutputDto.setStatus(leaveRequests1.getStatus());
+                leaveRequestOutputDto.setUpdatedBy(leaveRequests1.getUpdatedBy());
+                leaveRequestOutputDto.setEmployeeLeave(leaveRequests1.getEmployeeLeave());
+                outputLeaveRequests.add(leaveRequestOutputDto);
+            }
         }));
+        outputLeaveRequests.forEach(leaveRequests1 -> {
+        });
         return outputLeaveRequests;
     }
 }
