@@ -36,7 +36,7 @@ public class JwtService implements UserDetailsService {
     public void setAuthenticationManager(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
     }
-    public JwtResponse createJwtToken(JwtRequest jwtRequest) throws Exception {
+    public JwtResponse createJwtToken(JwtRequest jwtRequest) throws UserNotFoundException, InvalidCredentialsException, UserDisabledException {
         String userName = jwtRequest.getUserName();
         String userPassword = jwtRequest.getUserPassword();
         authenticate(userName, userPassword);
@@ -50,7 +50,7 @@ public class JwtService implements UserDetailsService {
             return new JwtResponse(user, newGeneratedToken);
         } else {
             // Throwing a more specific exception when the user is not found
-            throw new UserNotFoundException("User not found with username: " + userName);
+            throw new UserNotFoundException("User not found with username");
         }
     }
     @Override

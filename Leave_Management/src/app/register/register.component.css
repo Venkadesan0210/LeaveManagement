@@ -1,0 +1,48 @@
+.container {
+    margin-top: 50px;
+  }
+  .form-control {
+    border-color: #000; 
+    border-width: 1px;
+  }
+  .card-header{
+    background-color: #575050;
+  }
+
+  .custom-button {
+    background-color: #575050; /* Dark grey background */
+    color: #fff; /* White text */
+    border-color: #333; /* Dark grey border */
+  }
+  
+  .custom-button:hover {
+    background-color: #555; /* Darken background on hover */
+    border-color: #555; /* Darken border on hover */
+  }
+
+  .logout-button {
+    background-color: #dc3545; /* Red background color */
+    color: #fff; /* White text color */
+    border-color: #dc3545; /* Red border color */
+}
+
+.logout-button:hover {
+    background-color: #c82333; /* Darker red on hover */
+    border-color: #c82333;
+}
+
+.headerContainer {
+  background-color: lightgray;
+}
+.custom-button {
+  background-color: #333;
+  /* Dark grey background */
+  margin: 10px;
+  color: #fff;
+  /* White text */
+  border-color: #333;
+  /* Dark grey border */
+}
+.bold-label {
+  font-weight: 700; /* Adjust the font weight as needed */
+}

@@ -1,0 +1,12 @@
+.headerContainer {
+    background-color: lightgray;
+  }
+  .custom-button {
+    background-color: #333;
+    margin: 10px;
+    color: #fff;
+    border-color: #333;
+  }
+  .bold-label {
+    font-weight: 700;
+}

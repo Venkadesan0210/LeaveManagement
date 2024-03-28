@@ -1,48 +1,59 @@
-<p>home works!</p>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Home Page</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f0f0;
-  }
-  .container {
-    text-align: center;
-    padding: 50px;
-  }
-  .profile-button {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 8px;
-  }
-  .profile-button:hover {
-    background-color: #45a049;
-  }
-</style>
-</head>
-<body>
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light headerContainer">
+    <div class="container-fluid">
+      <div style="color: rgb(94, 89, 94);"class="bold-label">ADMIN<br><div>{{ userName }}</div></div>     
+     <a class="navbar-brand" href="asset/3867311.jpg"></a>
+      <!-- Other header elements -->
+      <div class="ml-auto d-flex align-items-center">
+        <button class="btn custom-button" type="submit" (click)="navigateToRegisterPage()">Add User <i
+            class="bi bi-person-plus"></i></button>
+        <button class="btn custom-button ml-2" type="button" (click)="logout()">Logout <i
+            class="bi bi-person-plus"></i></button>
+        <div class="ml-2 mb-0">          
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
 
 <div class="container">
-  <h1>Welcome Admin</h1>
-  <p>Click the button below to access your profile:</p>
-  <button class="profile-button" onclick="window.location.href = 'profile.html';">View Profile</button><br>
+  <div class="row justify-content-between align-items-center mb-4">
+    <div class="col-auto">
+      <form>
+        <div class="form-group mb-0">
+          <label for="options" class="mr-2 font-weight-bold"class="bold-label">Filter By User Type</label>
+          <select id="options" name="options" class="form-control" (change)="filterDetails($event)"
+            [(ngModel)]="selectedRole">
+            <option value="All"class="bold-label">All</option>
+            <option value="EMPLOYEE"class="bold-label">EMPLOYEE</option>
+            <option value="MANAGER"class="bold-label">MANAGER</option>
+          </select>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>S.No</th>
+          <th>Username</th>
+          <th>Role</th>
+          <th *ngIf="selectedRole!='All' && selectedRole =='EMPLOYEE'">Reporting To</th>
+          <th *ngIf="selectedRole === 'EMPLOYEE'">Edit</th> <!-- Add Edit column header conditionally -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of filterData; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ row.userName }}</td>
+          <td>{{ row.userRole }}</td>
+          <td *ngIf="selectedRole!='All' && selectedRole !='MANAGER'">{{row.assignee}}</td>
+          <td *ngIf="selectedRole == 'EMPLOYEE'"> <!-- Add Edit button conditionally -->
+            <button class="btn btn-primary" (click)="editAssignee()">Edit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
-
-<button  type="submit" (click)="navigateToRegisterPage()">register</button>
-
-</body>
-</html>

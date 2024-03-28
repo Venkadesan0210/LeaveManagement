@@ -1,1 +1,33 @@
-<p>edit works!</p>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-white text-center header">
+                    <h2 class="mb-0">Reporting Change</h2>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group mb-3">
+                            <input type="email" class="form-control p-2" formControlName="useremail" placeholder="Enter User Email"[(ngModel)]="UserEmail">
+                            <div *ngIf="userForm.get('useremail')?.invalid && userForm.get('useremail')?.touched" class="text-danger">
+                                <div *ngIf="userForm.get('useremail')?.errors?.['required']">User Email is required.</div>
+                                <div *ngIf="userForm.get('useremail')?.errors?.['email']">Please enter a valid email address.</div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="email" class="form-control p-2" formControlName="manageremail" placeholder="Enter Manager Email"[(ngModel)]="ManagerEmail">
+                            <div *ngIf="userForm.get('manageremail')?.invalid && userForm.get('manageremail')?.touched" class="text-danger">
+                                <div *ngIf="userForm.get('manageremail')?.errors?.['required']">Manager Email is required.</div>
+                                <div *ngIf="userForm.get('manageremail')?.errors?.['email']">Please enter a valid email address.</div>
+                            </div>
+                        </div> 
+                        <button type="submit" class="btn custom-button w-100 p-2" [disabled]="userForm.invalid"(click)="sendData()">Update</button>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-danger w-100" (click)="logout()">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

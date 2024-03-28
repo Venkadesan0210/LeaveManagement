@@ -1,71 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 500px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-            text-align: center;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        input[type="text"], input[type="password"], input[type="email"] {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        input[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-        }
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-    </style>
-</head>
-<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light headerContainer">
+        <div class="container-fluid">
+            <div style="color: rgb(94, 89, 94);"class="bold-label">ADMIN<br><div>{{ registeruserNames }}</div></div>         
+            <a class="navbar-brand" href="#"></a>
+            <!-- Other header elements -->
+            <div class="ml-auto d-flex align-items-center">
+                <button class="btn custom-button w-100 p-2" (click)="logout()">Back</button>
+                <div class="ml-2 mb-0">    
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
 
 <div class="container">
-    <h2>Register</h2>
-    <form action="#" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" [(ngModel)]="username" required>
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" [(ngModel)]="password"required>
-
-        <label for="confirm_password">Role:</label>
-        <input type="password" id="confirm_password" name="role" [(ngModel)]="role"required>
-
-        <input type="submit" value="Register" (click)="sendData()">
-    </form>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-white text-center header">
+                    <h2 class="mb-0">ADD USER</h2>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control p-2" formControlName="firstname" placeholder="Enter FirstName" [(ngModel)]="firstname">
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control p-2" formControlName="lastname" placeholder="Enter LastName" [(ngModel)]="lastname">
+                        </div> 
+                        <div class="form-group mb-3">
+                            <input type="email" class="form-control p-2" formControlName="email" placeholder="Enter Email" [(ngModel)]="email">
+                            <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="text-danger">
+                                <div *ngIf="userForm.get('email')?.errors?.['required']">Email is required.</div>
+                                <div *ngIf="userForm.get('email')?.errors?.['email']">Please enter a valid email address.</div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="password" class="form-control p-2" formControlName="password" placeholder="Enter your password" [(ngModel)]="password">
+                            <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched" class="text-danger">
+                                Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <select class="form-control p-2" formControlName="role" [(ngModel)]="role">
+                                <option value="" disabled>Select your role</option>
+                                <option value="ADMIN">ADMIN</option>
+                                <option value="MANAGER">MANAGER</option>
+                                <option value="EMPLOYEE">EMPLOYEE</option>
+                            </select>
+                            <div *ngIf="userForm.get('role')?.invalid && userForm.get('role')?.touched" class="text-danger">
+                                Please select a role.
+                            </div>
+                        </div>
+                        <button type="submit" class="btn custom-button w-100 p-2" [disabled]="userForm.invalid"(click)="sendData()">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-</body>
-</html>
-
