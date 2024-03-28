@@ -1,0 +1,48 @@
+
+.custom-button {
+  background-color: #333;
+  margin: 10px;
+  color: #fff;
+  border-color: #333;
+}
+
+.custom-button:hover {
+  background-color: #555;
+  border-color: #555;
+}
+
+.custom-button1 {
+  background-color: #333;
+  color: #fff;
+  border-color: #333;
+  margin: 6px;
+  padding: 6px;
+
+}
+
+.btn-black {
+  background-color: black;
+  color: white;
+}
+
+.custom-button {
+  margin-right: 10px;
+  /* Adjust as needed */
+}
+.navbar-brand,
+.custom-button,
+p {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.fixed-bottom {
+  background-color: lightgray;
+}
+
+.headerContainer {
+  background-color: lightgray;
+}
+.bold-label {
+  font-weight: 700; /* Adjust the font weight as needed */
+}

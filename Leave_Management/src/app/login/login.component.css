@@ -1,0 +1,25 @@
+  body {
+      background-color: #000;
+      color: #eee3e3;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    .form-control {
+      border-color: #000; 
+      border-width: 1px;
+    }
+    .card-header{
+      background-color: #575050;
+    }
+
+    .custom-button {
+      background-color: #575050; /* Dark grey background */
+      color: #fff; /* White text */
+      border-color: #333; /* Dark grey border */
+    }
+    
+    .custom-button:hover {
+      background-color: #555; /* Darken background on hover */
+      border-color: #555; /* Darken border on hover */
+    }
