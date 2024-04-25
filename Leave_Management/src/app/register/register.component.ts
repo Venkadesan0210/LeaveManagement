@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { UrlService } from '../Services/url.service';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -10,28 +12,56 @@ import { Router } from '@angular/router';
 })
 
 export class RegisterComponent {
-  username:string="";
+
+  email:string="";
+  firstname:string="";
+  lastname:string="";
   password:string="";
   role:string="";
-  constructor(private urlService:UrlService,private router: Router){
+  userForm!: FormGroup;
+  registeruserNames: string | null | undefined;
+  ngOnInit() {
+    this.userForm = this.fb.group({
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]],
+      role: ['', Validators.required]
+    });
+
+    const username = localStorage.getItem('userName');
+      this.registeruserNames = username;
+  }
+  constructor(private urlService:UrlService,private router: Router,private toastr: ToastrService,private fb: FormBuilder){
   }
   sendData(){
     const registerData={
-      username:this.username,
-      password:this.password,
-      role:this.role
+      userFirstName:this.firstname,
+      userLastName:this.lastname,
+      userName:this.email,
+      userPassword:this.password,
+      userRole:this.role
     }
     this.urlService.sendRegisterDetails(registerData).subscribe({
-      next:(response:any)=>{
-        if(response!="")
-        {
-         // console.log(response);
-          this.router.navigate(['/login']);
+      next: (response: any) => {
+        if (response !== "") {
+          this.toastr.success('Registration successful', 'Success');
+          this.router.navigate(['/home']);
         }
       },
-      error:(err:any)=>{
-        console.log(err);
+      error: (error) => {
+        this.toastr.error('Registration failed', 'Error');
+        console.error('Error:', error);
       }
-    })
+    });
+}
+onSubmit() {
+  if (this.userForm.valid) {
+    // Handle form submission
+    console.log(this.userForm.value);
+  }
+  }
+  logout(){
+    this.router.navigate(['/home']);
   }
 }
