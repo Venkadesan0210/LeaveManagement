@@ -6,6 +6,9 @@ public class Role {
     @Id
     private String roleName;
     private String roleDescription;
+
+
+
     public String getRoleName() {
         return roleName;
     }

@@ -90,4 +90,14 @@ public class LeaveRequests {
     public void setUpdatedBy(String updatedBy) {
         this.updatedBy = updatedBy;
     }
+
+    private String managerDescription;
+
+    public String getManagerDescription() {
+        return managerDescription;
+    }
+
+    public void setManagerDescription(String managerDescription) {
+        this.managerDescription = managerDescription;
+    }
 }

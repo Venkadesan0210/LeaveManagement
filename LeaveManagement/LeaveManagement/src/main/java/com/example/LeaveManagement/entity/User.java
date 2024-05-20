@@ -1,5 +1,6 @@
 package com.example.leavemanagement.entity;
 import javax.persistence.*;
+
 import java.util.Set;
 @Entity
 public class User {
@@ -10,9 +11,27 @@ public class User {
     private String userPassword;
     private String userRole;
     private String assignee;
+    private String secondaryAssignee;
+    private String otp;
+
+
+
+
+
+    public String getSecondaryAssignee() {
+        return secondaryAssignee;
+    }
+
+    public void setSecondaryAssignee(String secondaryAssignee) {
+        this.secondaryAssignee = secondaryAssignee;
+    }
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="emp_leave_id" ,referencedColumnName = "id")
     private EmployeeLeave employeeLeave;
+
+
+
     public EmployeeLeave getEmployeeLeave() {
         return employeeLeave;
     }
@@ -82,4 +101,16 @@ public class User {
     public void setUserRole(String userRole) {
         this.userRole = userRole;
     }
+
+
+
+    public String getOtp() {
+        return otp;
+    }
+
+    public void setOtp(String otp) {
+        this.otp = otp;
+    }
+
+
 }

@@ -8,4 +8,8 @@ public interface UserRepo extends JpaRepository<User, String> {
     List<User> findAll();
     User findByUserName(String userName);
     List<User> findByAssignee(String assignee);
+
+    List<User> findBySecondaryAssignee(String secondaryAssigne);
+
+
 }

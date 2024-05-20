@@ -7,6 +7,13 @@ public class UpdateLeaveRequestDto {
     public LeaveStatus getApprovalStatus() {
         return approvalStatus;
     }
+    private String managerDecription;
+    public String getManagerDecription() {
+        return managerDecription;
+    }
+    public void setManagerDecription(String managerDecription) {
+        this.managerDecription = managerDecription;
+    }
     public void setApprovalStatus(LeaveStatus approvalStatus) {
         this.approvalStatus = approvalStatus;
     }
@@ -22,4 +29,5 @@ public class UpdateLeaveRequestDto {
     public void setLeaveRequestId(Long leaveRequestId) {
         this.leaveRequestId = leaveRequestId;
     }
+
 }

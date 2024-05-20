@@ -42,14 +42,13 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.cors();
         httpSecurity.csrf().disable()
-                .authorizeRequests().antMatchers("/authenticate", "/registerNewUser", "/createNewRole", "/allusers","/update-user","/leaves/**","/apply-leave","/update-leave","/leaves-manager","/userLeaves/**","/assigneeByEmployee/**").permitAll()
+                .authorizeRequests().antMatchers("/authenticate", "/createNewRole", "/allusers","/leaves/**","/userLeaves/**","/assigneeByEmployee/**","/deteleByUserName","/update-user","/user/delete/**","/registerNewUser","/mail/send/**","/changePassword","/forgotPassword","/reset").permitAll()
                 .antMatchers(HttpHeaders.ALLOW).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
     @Bean
@@ -60,4 +59,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         authenticationManagerBuilder.userDetailsService(jwtService).passwordEncoder(passwordEncoder());
     }
+
+
 }
