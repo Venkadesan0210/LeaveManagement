@@ -36,6 +36,7 @@ public class JwtService implements UserDetailsService {
     public void setAuthenticationManager(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
     }
+
     public JwtResponse createJwtToken(JwtRequest jwtRequest) throws UserNotFoundException, InvalidCredentialsException, UserDisabledException {
         String userName = jwtRequest.getUserName();
         String userPassword = jwtRequest.getUserPassword();
@@ -74,7 +75,7 @@ public class JwtService implements UserDetailsService {
         );
         return authorities;
     }
-    private void authenticate(String userName, String userPassword) throws UserDisabledException, InvalidCredentialsException {
+    void authenticate(String userName, String userPassword) throws UserDisabledException, InvalidCredentialsException {
         try {
             // Uncovered code
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userName, userPassword));

@@ -11,6 +11,16 @@ public class LeaveRequestOutputDto {
     private EmployeeLeave employeeLeave;
     private LeaveStatus status;
     private Long leaveRequestId;
+    private String managerDescription;
+
+    public String getManagerDescription() {
+        return managerDescription;
+    }
+
+    public void setManagerDescription(String managerDescription) {
+        this.managerDescription = managerDescription;
+    }
+
     public Long getLeaveRequestId() {
         return leaveRequestId;
     }

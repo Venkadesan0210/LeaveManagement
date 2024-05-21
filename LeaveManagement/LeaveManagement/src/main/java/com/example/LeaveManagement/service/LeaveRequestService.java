@@ -26,8 +26,16 @@ public class LeaveRequestService implements LeaveRequestServiceImpl{
         this.roleRepo = roleRepo;
     }
     public List<LeaveRequests> getAllLeaveRequest(){
+
         return leaveRequestRepo.findAll();
     }
+    public List<LeaveRequests> getLeaveRequestByUserName(String employeeUserName) {
+        User user=userRepo.findByUserName(employeeUserName);
+        Long employeeId = user.getEmployeeLeave().getId();
+
+        return this.getLeaveRequestById(employeeId);
+    }
+
     public List<LeaveRequests> getLeaveRequestById(Long emplyeeLeaveId){
         return leaveRequestRepo.findByEmployeeLeaveId(emplyeeLeaveId);
     }
@@ -36,7 +44,7 @@ public class LeaveRequestService implements LeaveRequestServiceImpl{
         if(user.getUserName().isBlank()){
             throw new EntityNotFoundException("user not found");
         }
-        if(user.getAssignee().isBlank()&& user.getAssignee().isEmpty()){
+        if(user.getAssignee().isBlank()&& user.getAssignee().isEmpty()) {
             throw new EntityNotFoundException("manager not found");
         }
         LeaveRequests leaveRequest=new LeaveRequests();
@@ -55,6 +63,7 @@ public class LeaveRequestService implements LeaveRequestServiceImpl{
         Role userRole=roleRepo.findByRoleName(user.getUserRole());
         if(leaveRequests.isPresent() && (leaveRequests.get().getStatus().equals(LeaveStatus.REQUESTED)) && updateLeaveRequestDto.getApprovalStatus().equals(LeaveStatus.APPROVED) && userRole.getRoleName().equals("EMPLOYEE")){
             leaveRequests.get().setStatus(updateLeaveRequestDto.getApprovalStatus());
+            leaveRequests.get().setManagerDescription(updateLeaveRequestDto.getManagerDecription());
             Integer leaveCount = Integer.valueOf(leaveRequests.get().getNoOfDays());
             switch (leaveRequests.get().getLeaveType()){
                 case ("marriageLeave"):
@@ -78,6 +87,7 @@ public class LeaveRequestService implements LeaveRequestServiceImpl{
             return ResponseEntity.ok().body(updatedLeaveRequests);
         } else if (leaveRequests.isPresent() && updateLeaveRequestDto.getApprovalStatus().equals(LeaveStatus.REJECTED)) {
             leaveRequests.get().setStatus(updateLeaveRequestDto.getApprovalStatus());
+            leaveRequests.get().setManagerDescription(updateLeaveRequestDto.getManagerDecription());
             LeaveRequests updatedLeaveRequests=leaveRequestRepo.save(leaveRequests.get());
             leaveRequests.get().setUpdatedBy(user.getAssignee());
             return ResponseEntity.ok().body(updatedLeaveRequests);
@@ -109,6 +119,7 @@ public class LeaveRequestService implements LeaveRequestServiceImpl{
                 leaveRequestOutputDto.setStatus(leaveRequests1.getStatus());
                 leaveRequestOutputDto.setUpdatedBy(leaveRequests1.getUpdatedBy());
                 leaveRequestOutputDto.setEmployeeLeave(leaveRequests1.getEmployeeLeave());
+                leaveRequestOutputDto.setManagerDescription(leaveRequests1.getManagerDescription());
                 outputLeaveRequests.add(leaveRequestOutputDto);
             }
         }));
